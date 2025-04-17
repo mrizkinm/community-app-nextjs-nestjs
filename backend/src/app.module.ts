@@ -23,12 +23,12 @@ dotenv.config();
       signOptions: { expiresIn: process.env.JWT_EXPIRES_IN },
     }),
     TypeOrmModule.forRoot({
-      type: 'postgres', // Tipe database, untuk PostgreSQL
-      host: process.env.DATABASE_HOST, // Alamat host, bisa menggunakan IP atau nama domain
-      port: Number(process.env.DATABASE_PORT), // Port default PostgreSQL
-      username: process.env.DATABASE_USERNAME, // Username database
-      password: process.env.DATABASE_PASSWORD, // Password database
-      database: process.env.DATABASE_NAME, // Nama database yang digunakan
+      type: 'postgres',
+      host: process.env.DATABASE_HOST,
+      port: Number(process.env.DATABASE_PORT),
+      username: process.env.DATABASE_USERNAME,
+      password: process.env.DATABASE_PASSWORD,
+      database: process.env.DATABASE_NAME,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: false,
       migrationsRun: false,

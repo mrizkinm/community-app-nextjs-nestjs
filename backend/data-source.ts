@@ -5,14 +5,14 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 export const AppDataSource = new DataSource({
-  type: 'postgres', // Tipe database, untuk PostgreSQL
-  host: process.env.DATABASE_HOST, // Alamat host, bisa menggunakan IP atau nama domain
-  port: Number(process.env.DATABASE_PORT), // Port default PostgreSQL
-  username: process.env.DATABASE_USERNAME, // Username database
-  password: process.env.DATABASE_PASSWORD, // Password database
-  database: process.env.DATABASE_NAME, // Nama database yang digunakan
+  type: 'postgres',
+  host: process.env.DATABASE_HOST,
+  port: Number(process.env.DATABASE_PORT),
+  username: process.env.DATABASE_USERNAME,
+  password: process.env.DATABASE_PASSWORD,
+  database: process.env.DATABASE_NAME,
   entities: ['src/**/*.entity{.ts,.js}'],
-  migrations: ['./src/migrations/*.ts'], // Tempat migrasi kamu
+  migrations: ['./src/migrations/*.ts'],
   synchronize: false,
   logging: true,
 });
