@@ -10,7 +10,9 @@ import { AdminModule } from './admin/admin.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
+import * as dotenv from 'dotenv';
 
+dotenv.config();
 @Module({
   
   imports: [
@@ -21,7 +23,7 @@ import { JwtModule } from '@nestjs/jwt';
       signOptions: { expiresIn: process.env.JWT_EXPIRES_IN },
     }),
     TypeOrmModule.forRoot({
-      type: process.env.DATABASE_TYPE as 'postgres', // Tipe database, untuk PostgreSQL
+      type: 'postgres', // Tipe database, untuk PostgreSQL
       host: process.env.DATABASE_HOST, // Alamat host, bisa menggunakan IP atau nama domain
       port: Number(process.env.DATABASE_PORT), // Port default PostgreSQL
       username: process.env.DATABASE_USERNAME, // Username database
