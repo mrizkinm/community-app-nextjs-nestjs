@@ -21,8 +21,9 @@ export class AuthService {
 
     const hashed = await bcrypt.hash(dto.password, 10);
     const user = this.userRepo.create({ ...dto, password: hashed });
-    await this.userRepo.save(user);
-    return user;
+    const res = await this.userRepo.save(user);
+    const { password, token, ...cleanedPassword } = res;
+    return cleanedPassword;
   }
 
   async login(dto: LoginDto) {
