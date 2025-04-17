@@ -367,6 +367,7 @@ Authorization: Bearer your_token_here
             }
         ],
         "likeCount": 0,
+        "likeByMe": false,
         "commentCount": 0
     }
 ]
@@ -405,6 +406,7 @@ Authorization: Bearer your_token_here
         }
     ],
     "likeCount": 0,
+    "likeByMe": false,
     "commentCount": 0
 }
 ```
@@ -467,6 +469,7 @@ Authorization: Bearer your_token_here
             "role": "user",
             "token": null
         },
+        "likeByMe": false,
         "likeCount": 0
     }
 ]
