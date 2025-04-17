@@ -300,35 +300,7 @@ Authorization: Bearer your_token_here
 ]
 ```
 
-### 11. Admin Get List Comments by PostID
-
-**Endpoint**: `GET /api/admin/comments/{postId}`
-```http
-Authorization: Bearer your_token_here
-```
-
-#### Response Body:
-```json
-[
-    {
-        "id": 11,
-        "content": "helo hendro",
-        "createdAt": "2025-04-17T02:54:42.538Z",
-        "author": {
-            "id": 1,
-            "email": "user@gmail.com",
-            "password": "$2b$10$PBg5hZhEaadoZ/JQyKy19OpvDaWY5griIO7r4OHE5Y0rn9g5cgarO",
-            "name": "Jono",
-            "createdAt": "2025-04-15T16:31:23.075Z",
-            "role": "user",
-            "token": null
-        },
-        "likeCount": 0
-    }
-]
-```
-
-### 12. User Create Posts
+### 11. User Create Posts
 
 **Endpoint**: `POST /api/user/posts`
 ```http
@@ -366,7 +338,7 @@ Authorization: Bearer your_token_here
 }
 ```
 
-### 13. User Get List Posts
+### 12. User Get List Posts
 
 **Endpoint**: `GET /api/user/posts`
 ```http
@@ -402,7 +374,7 @@ Authorization: Bearer your_token_here
 ]
 ```
 
-### 14. User Get Detail Posts
+### 13. User Get Detail Posts
 
 **Endpoint**: `GET /api/user/posts/{postId}`
 ```http
@@ -439,7 +411,7 @@ Authorization: Bearer your_token_here
 }
 ```
 
-### 15. User Comment Post
+### 14. User Comment Post
 
 **Endpoint**: `POST /api/user/comments/{postId}`
 ```http
@@ -474,7 +446,7 @@ Authorization: Bearer your_token_here
 }
 ```
 
-### 16. User Get List Comment Post
+### 15. User Get List Comment Post
 
 **Endpoint**: `GET /api/user/comments/{postId}`
 ```http
@@ -502,7 +474,7 @@ Authorization: Bearer your_token_here
 ]
 ```
 
-### 17. User Toggle Like Post
+### 16. User Toggle Like Post
 
 **Endpoint**: `POST /api/user/likes/post/{postId}`
 ```http
@@ -516,7 +488,7 @@ Authorization: Bearer your_token_here
 }
 ```
 
-### 18. User Toggle Like Comment
+### 17. User Toggle Like Comment
 
 **Endpoint**: `POST /api/user/likes/comment/{postId}`
 ```http
@@ -530,7 +502,7 @@ Authorization: Bearer your_token_here
 }
 ```
 
-### 19. User Get List Tags
+### 18. User Get List Tags
 
 **Endpoint**: `GET /api/user/tags`
 ```http
