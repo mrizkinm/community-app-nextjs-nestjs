@@ -1,7 +1,11 @@
 import { DataSource } from 'typeorm';
 
+import * as dotenv from 'dotenv';
+
+dotenv.config();
+
 export const AppDataSource = new DataSource({
-  type: process.env.DATABASE_TYPE as 'postgres', // Tipe database, untuk PostgreSQL
+  type: 'postgres', // Tipe database, untuk PostgreSQL
   host: process.env.DATABASE_HOST, // Alamat host, bisa menggunakan IP atau nama domain
   port: Number(process.env.DATABASE_PORT), // Port default PostgreSQL
   username: process.env.DATABASE_USERNAME, // Username database
