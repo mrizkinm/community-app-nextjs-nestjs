@@ -20,7 +20,7 @@ export class CommentsController {
 
   @Get()
   @UseGuards(UserGuard)
-  getAll(@Param('postId') postId: number) {
-    return this.commentsService.getByPost(postId);
+  getAll(@Param('postId') postId: number, @User() user) {
+    return this.commentsService.getByPost(postId, user);
   }
 }

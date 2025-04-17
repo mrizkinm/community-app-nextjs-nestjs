@@ -10,6 +10,7 @@ export interface Post {
   status: boolean;
   likeCount: number;
   createdAt: string;
+  likeByMe: boolean;
   commentCount: number;
 }
 
@@ -21,6 +22,7 @@ export interface Comment {
     name: string;
   };
   likeCount: number;
+  likeByMe: boolean;
   createdAt: string;
 }
 

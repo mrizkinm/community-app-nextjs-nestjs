@@ -28,7 +28,7 @@ export class CommentsService {
     return this.commentRepo.save(comment);
   }
 
-  async getByPost(postId: number) {
+  async getByPost(postId: number, user: User) {
     // Ambil semua komentar dari post tertentu
     const comments = await this.commentRepo.find({
       where: { post: { id: postId } },
@@ -43,9 +43,17 @@ export class CommentsService {
           where: { comment: { id: comment.id } },
         });
   
+        const liked = await this.likeRepo.findOne({
+          where: {
+            comment: { id: comment.id },
+            user: { id: user.id },
+          },
+        });
+  
         return {
           ...comment,
           likeCount,
+          likeByMe: !!liked,
         };
       }),
     );

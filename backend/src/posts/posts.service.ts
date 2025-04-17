@@ -53,6 +53,8 @@ export class PostsService {
     const query = this.postRepo.createQueryBuilder('post')
       .leftJoinAndSelect('post.author', 'user')
       .leftJoinAndSelect('post.tags', 'tag')
+      .leftJoinAndSelect('post.likes', 'like')
+      .leftJoinAndSelect('like.user', 'likeUser')
       .orderBy('post.createdAt', 'DESC');
   
     if (onlyMine == 'true') {
@@ -72,21 +74,25 @@ export class PostsService {
   
     // Iterasi untuk setiap post dan hitung jumlah like dan comment secara manual
     for (const post of posts) {
-      // Hitung jumlah like
-      const likeCount = await this.likeRepo.count({ where: { post: { id: post.id } } });
+      const likeCount = post.likes.length;
   
-      // Hitung jumlah comment
-      const commentCount = await this.commentRepo.count({ where: { post: { id: post.id } } });
+      const commentCount = await this.commentRepo.count({
+        where: { post: { id: post.id } },
+      });
   
-      // Tambahkan likeCount dan commentCount ke dalam post
+      // Cek apakah user yang login sudah nge-like post ini
+      const likeByMe = post.likes.some(like => like.user.id === user.id);
+  
       post['likeCount'] = likeCount;
       post['commentCount'] = commentCount;
+      post['likeByMe'] = likeByMe;
     }
+  
   
     return posts;
   }
 
-  async findDetailPost(id: number) {
+  async findDetailPost(id: number, user: User) {
     const post = await this.postRepo.findOne({
       where: { id },
       relations: ['author', 'tags'],
@@ -95,9 +101,15 @@ export class PostsService {
     if (!post) throw new NotFoundException('Post not found');
   
     // Hitung jumlah like & comment
-    const [likeCount, commentCount] = await Promise.all([
+    const [likeCount, commentCount, liked] = await Promise.all([
       this.likeRepo.count({ where: { post: { id } } }),
       this.commentRepo.count({ where: { post: { id } } }),
+      this.likeRepo.findOne({
+        where: {
+          post: { id },
+          user: { id: user.id },
+        },
+      }),
     ]);
   
     // Hapus password dari author
@@ -108,7 +120,8 @@ export class PostsService {
       author: authorWithoutPassword,
       likeCount,
       commentCount,
+      likeByMe: !!liked
     };
-  }
+  }  
   
 }

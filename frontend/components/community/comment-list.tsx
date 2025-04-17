@@ -65,7 +65,7 @@ export function CommentList ({ data }: { data: Comment[] }) {
 
           <div className="mt-2 flex items-center gap-1 text-sm text-muted-foreground">
             <Button variant="outline" size="icon" className="gap-1 h-6" onClick={ () => handleCommentLike(comment.id)} title="Like Comment">
-              <Heart className="w-3 h-3" />
+            { comment.likeByMe ? <Heart className="w-4 h-4 fill-red-500 stroke-red-500" /> : <Heart className="w-4 h-4" /> } 
               <span className="text-xs">{comment.likeCount}</span>
             </Button>
           </div>

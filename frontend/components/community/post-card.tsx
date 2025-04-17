@@ -89,7 +89,7 @@ export function PostCard({ post }: PostCardProps) {
 
       <div className="flex items-center gap-4">
         <Button variant="ghost" size="sm" className="gap-1" title="Like Post" onClick={handlePostLike}>
-          <Heart className="w-4 h-4" />
+          { post.likeByMe ? <Heart className="w-4 h-4 fill-red-500 stroke-red-500" /> : <Heart className="w-4 h-4" /> } 
           <span>{post.likeCount}</span>
         </Button>
         <Link href={`/user/posts/${post.id}`} title="Comment Post">

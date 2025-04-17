@@ -23,7 +23,7 @@ export class PostsController {
 
   @Get(':postId')
   @UseGuards(UserGuard)
-  getDetailPosts(@Param('postId') id: number) {
-    return this.postsService.findDetailPost(id);
+  getDetailPosts(@Param('postId') id: number, @User() user) {
+    return this.postsService.findDetailPost(id, user);
   }
 }
