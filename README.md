@@ -44,8 +44,6 @@ DATABASE_NAME=community-app
 
 #### Migrations
 ```bash
-npx typeorm migration:create src/migrations/NamaMigrations
-
 npm run migration:generate src/migrations/NamaMigrations
 
 npm run migration:run
