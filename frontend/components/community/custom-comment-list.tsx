@@ -9,6 +9,16 @@ import { useErrorHandler } from '@/hooks/use-error-handler';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
+import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogFooter,
+  AlertDialogCancel,
+  AlertDialogAction,
+} from "@/components/ui/alert-dialog"
 
 export function CustomCommentList ({ data }: { data: Comment[] }) {
 
@@ -71,11 +81,26 @@ export function CustomCommentList ({ data }: { data: Comment[] }) {
               <Heart className="w-3 h-3" />
               <span className="text-xs">{comment.likeCount}</span>
             </Button>
-
-            
-            <Button variant="destructive" size="sm" onClick={() => handleDeleteComment(comment.id)} title="Delete Post">
-              <Trash /> Delete
-            </Button>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button variant="destructive" size="sm">
+                  <Trash className="h-4 w-4" /> Delete
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Yakin ingin menghapus data ini?</AlertDialogTitle>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Batal</AlertDialogCancel>
+                  <AlertDialogAction
+                    onClick={() => handleDeleteComment(comment.id)} title="Delete Post"
+                  >
+                    Delete
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
           </div>
         </div>
       </div>

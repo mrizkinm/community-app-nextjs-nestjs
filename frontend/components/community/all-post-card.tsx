@@ -11,6 +11,16 @@ import { useErrorHandler } from "@/hooks/use-error-handler";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogFooter,
+  AlertDialogCancel,
+  AlertDialogAction,
+} from "@/components/ui/alert-dialog"
 
 interface PostCardProps {
   post: Post;
@@ -142,16 +152,26 @@ export function AllPostCard({ post }: PostCardProps) {
               </Button>
             )
           }
-            <Button
-              variant="destructive"
-              size="sm"
-              className="gap-1"
-              onClick={() => handleDeletePost(post.id)}
-              title="Delete Post"
-            >
-              <Trash className="w-4 h-4" />
-              <span>Delete</span>
-            </Button>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button variant="destructive" size="sm">
+                  <Trash className="h-4 w-4" /> Delete
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Yakin ingin menghapus data ini?</AlertDialogTitle>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Batal</AlertDialogCancel>
+                  <AlertDialogAction
+                    onClick={() => handleDeletePost(post.id)}
+                  >
+                    Delete
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
           </div>
       </div>
 
