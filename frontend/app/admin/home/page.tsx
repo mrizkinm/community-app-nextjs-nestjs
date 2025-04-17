@@ -5,6 +5,7 @@ import {
   MessageCircle,
   Users,
 } from "lucide-react";
+import NoData from "@/components/community/no-data";
 
 export default async function AdminDashboard() {
   const stats = await getAnalytics();
@@ -14,6 +15,8 @@ export default async function AdminDashboard() {
       <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold">Analytics</h1>
       </div>
+    {
+      stats ? 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
@@ -43,6 +46,9 @@ export default async function AdminDashboard() {
           </CardContent>
         </Card>
       </div>
+      :
+      <NoData />
+    }
     </div>
   );
 }
