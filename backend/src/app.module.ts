@@ -16,7 +16,7 @@ dotenv.config();
 @Module({
   
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }), // load .env secara otomatis
+    ConfigModule.forRoot({ isGlobal: true }),
     JwtModule.register({
       global: true,
       secret: process.env.JWT_SECRET,
@@ -30,7 +30,7 @@ dotenv.config();
       password: process.env.DATABASE_PASSWORD, // Password database
       database: process.env.DATABASE_NAME, // Nama database yang digunakan
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: false, // Jangan pakai di produksi! Ini akan membuat TypeORM otomatis membuat dan mengubah tabel sesuai dengan entitas
+      synchronize: false,
       migrationsRun: false,
       migrations: [__dirname + '/migrations/**/*{.ts,.js}']
     }),

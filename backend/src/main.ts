@@ -16,7 +16,7 @@ async function bootstrap() {
     .setTitle('Community App API Docs')
     .setDescription('Documentation for Commmunity App API')
     .setVersion('1.0')
-    .addBearerAuth() // Kalau pakai JWT
+    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
