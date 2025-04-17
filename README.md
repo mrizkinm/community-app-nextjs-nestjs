@@ -534,7 +534,7 @@ Authorization: Bearer your_token_here
 }
 ```
 
-### Contoh response forbidden access (token kosong atau tidak sesuai role)
+### Contoh response 403 forbidden access (token kosong atau tidak sesuai role)
 ```json
 
 {
@@ -550,15 +550,6 @@ Authorization: Bearer your_token_here
     "message": "Cannot GET /api/posts",
     "error": "Not Found",
     "statusCode": 404
-}
-```
-### Contoh response forbidden access 403 (token kosong atau tidak sesuai role)
-```json
-
-{
-    "message": "Forbidden resource",
-    "error": "Forbidden",
-    "statusCode": 403
 }
 ```
 ---
