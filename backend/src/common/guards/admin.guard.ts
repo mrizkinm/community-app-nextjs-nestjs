@@ -1,14 +1,20 @@
 import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { Observable } from 'rxjs';
+import { Repository } from 'typeorm';
+import { User } from 'src/entities/user.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class AdminGuard implements CanActivate {
-  constructor(private jwtService: JwtService) {}
+  constructor(
+    private jwtService: JwtService,
+    @InjectRepository(User)
+    private readonly userRepo: Repository<User>,
+  ) {}
 
-  canActivate(
+  async canActivate(
     context: ExecutionContext,
-  ): boolean | Promise<boolean> | Observable<boolean> {
+  ): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
     const token = request.headers.authorization?.split(' ')[1]; // Bearer token
 
@@ -18,9 +24,14 @@ export class AdminGuard implements CanActivate {
 
     try {
       const payload = this.jwtService.verify(token);
-      if (payload.role !== 'admin') return false;
+      // Cek apakah token match dengan yang ada di DB
+      const user = await this.userRepo.findOne({
+        where: { id: payload.id, token },
+      });
+
+      if (!user || user.role !== 'admin') return false;
   
-      request.user = payload;
+      request.user = user;
       return true;
     } catch (error) {
       return false;
