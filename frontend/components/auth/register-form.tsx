@@ -18,15 +18,17 @@ import { useState } from "react";
 import { useErrorHandler } from "@/hooks/use-error-handler";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 
 export const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Invalid email address"),
   password: z.string().min(6, "Password must be at least 6 characters"),
+  role: z.string(),
   confirmPassword: z.string(),
 }).refine((data) => data.password === data.confirmPassword, {
   message: "Passwords don't match",
-  path: ["confirmPassword"],
+  path: ["confirmPassword"]
 });
 
 export function RegisterForm() {
@@ -134,6 +136,38 @@ export function RegisterForm() {
                 </FormItem>
               )}
             />
+            <FormField
+              control={form.control}
+              name="role"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Role</FormLabel>
+                  <FormControl>
+                    <RadioGroup
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                      className="flex flex-col space-y-1"
+                    >
+                      <FormItem className="flex items-center space-x-3 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value="admin" />
+                        </FormControl>
+                        <FormLabel className="font-normal">Admin</FormLabel>
+                      </FormItem>
+
+                      <FormItem className="flex items-center space-x-3 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value="user" />
+                        </FormControl>
+                        <FormLabel className="font-normal">User</FormLabel>
+                      </FormItem>
+                    </RadioGroup>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
             <Button type="submit" className="w-full" disabled={loading}>
               {loading ? 'Loading...' : 'Register'}
             </Button>
