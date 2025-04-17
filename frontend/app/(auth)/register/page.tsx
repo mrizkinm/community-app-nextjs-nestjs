@@ -6,7 +6,7 @@ export default function RegisterPage() {
     <div className="flex min-h-screen items-center justify-center bg-gray-50 p-4">
       <div className="w-full space-y-8">
         <div className="flex flex-col items-center">
-          <h1 className="text-3xl font-bold">New User Registration</h1>
+          <h1 className="text-3xl font-bold">Registration</h1>
           <p className="text-muted-foreground">
             Enter your details to get started
           </p>
