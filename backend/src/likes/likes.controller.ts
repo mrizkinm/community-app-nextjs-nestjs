@@ -7,15 +7,15 @@ import { User } from '../common/decorators/user.decorator';
 export class LikesController {
   constructor(private readonly likesService: LikesService) {}
 
-  @Post('post/:id')
+  @Post('post/:postId')
   @UseGuards(UserGuard)
-  togglePostLike(@Param('id') id: number, @User() user) {
+  togglePostLike(@Param('postId') id: number, @User() user) {
     return this.likesService.togglePostLike(+id, user.id);
   }
 
-  @Post('comment/:id')
+  @Post('comment/:commentId')
   @UseGuards(UserGuard)
-  toggleCommentLike(@Param('id') id: number, @User() user) {
+  toggleCommentLike(@Param('commentId') id: number, @User() user) {
     return this.likesService.toggleCommentLike(+id, user.id);
   }
 }
