@@ -30,7 +30,7 @@ dotenv.config();
       password: process.env.DATABASE_PASSWORD, // Password database
       database: process.env.DATABASE_NAME, // Nama database yang digunakan
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true, // Jangan pakai di produksi! Ini akan membuat TypeORM otomatis membuat dan mengubah tabel sesuai dengan entitas
+      synchronize: false, // Jangan pakai di produksi! Ini akan membuat TypeORM otomatis membuat dan mengubah tabel sesuai dengan entitas
       migrationsRun: false,
       migrations: [__dirname + '/migrations/**/*{.ts,.js}']
     }),
