@@ -3,7 +3,7 @@
 Project ini menggunakan frontend next.js di folder frontend dan backend menggunakan nest.js di folder backend
 
 # Backend (Nest.js)
-## 🔧 Teknologi yang Digunakan
+## Teknologi yang Digunakan
 
 - 🧠 **NestJS (TypeScript)**
 - 🛢 **TypeORM** (ORM untuk DB relasional)
@@ -17,7 +17,7 @@ Project ini menggunakan frontend next.js di folder frontend dan backend mengguna
 ```bash
 git clone https://github.com/mrizkinm/community-app-nextjs-nestjs
 ```
-
+#### Masuk ke folder backend
 ### 2. Install Dependency
 ```bash
 npm install
@@ -571,7 +571,7 @@ Authorization: Bearer your_token_here
 ```bash
 git clone https://github.com/mrizkinm/community-app-nextjs-nestjs
 ```
-
+#### Masuk ke folder frontend
 ### 2. Install Dependency
 ```bash
 npm install
